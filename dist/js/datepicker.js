@@ -419,11 +419,11 @@
                 case /h/.test(result):
                     result = replacer(result, boundary('h'), hours);
                 case /yyyy/.test(result):
-                    result = replacer(result, boundary('yyyy'), d.year);
+                    result = replacer(result, boundary('yyyy'), d.year-1911);
                 case /yyyy1/.test(result):
-                    result = replacer(result, boundary('yyyy1'), decade[0]);
+                    result = replacer(result, boundary('yyyy1'), decade[0]-1911);
                 case /yyyy2/.test(result):
-                    result = replacer(result, boundary('yyyy2'), decade[1]);
+                    result = replacer(result, boundary('yyyy2'), decade[1]-1911);
                 case /yy/.test(result):
                     result = replacer(result, boundary('yy'), d.year.toString().slice(-2));
             }
@@ -1715,7 +1715,7 @@
         _getYearHtml: function (date) {
             var content = this._getCellContents(date, 'year');
 
-            return '<div class="' + content.classes + '" data-year="' + date.getFullYear() + '">' + content.html + '</div>'
+            return '<div class="' + content.classes + '" data-year="' + date.getFullYear() + '">' + (content.html - 1911) + '</div>'
         },
 
         _renderTypes: {
